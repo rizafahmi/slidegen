@@ -29,12 +29,14 @@ if config_env() == :prod do
   #     """
 
   maybe_ipv6 = if System.get_env("ECTO_IPV6") in ~w(true 1), do: [:inet6], else: []
+  database_host = System.get_env("DATABASE_HOST") || "localhost"
+  IO.puts("Using database host: #{database_host}")
 
   config :slidegen, Slidegen.Repo,
     ssl: false,
     # url: database_url,
     adapter: Ecto.Adapters.Postgres,
-    host: System.get_env("DATABASE_HOST") || "localhost",
+    host: database_host,
     database: System.get_env("DATABASE_NAME"),
     username: System.get_env("DATABASE_USER"),
     password: System.get_env("DATABASE_PASSWORD"),
