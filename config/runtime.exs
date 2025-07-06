@@ -31,7 +31,7 @@ if config_env() == :prod do
   maybe_ipv6 = if System.get_env("ECTO_IPV6") in ~w(true 1), do: [:inet6], else: []
 
   config :slidegen, Slidegen.Repo,
-    # ssl: true,
+    ssl: false,
     # url: database_url,
     adapter: Ecto.Adapters.Postgres,
     host: System.get_env("DATABASE_HOST") || "localhost",
