@@ -29,7 +29,7 @@ if config_env() == :prod do
   #     """
 
   maybe_ipv6 = if System.get_env("ECTO_IPV6") in ~w(true 1), do: [:inet6], else: []
-  database_host = System.get_env("DATABASE_HOST") || "localhost"
+  database_host = System.get_env("DATABASE_HOST") || "localgost"
   IO.puts("Using database host: #{database_host}")
 
   config :slidegen, Slidegen.Repo,
