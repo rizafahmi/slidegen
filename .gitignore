@@ -37,3 +37,6 @@ npm-debug.log
 /assets/node_modules/
 
 .envrc
+
+.cursor/
+.cursorrules
