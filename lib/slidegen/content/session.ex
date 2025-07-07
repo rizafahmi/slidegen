@@ -1,4 +1,7 @@
 defmodule Slidegen.Content.Session do
+  @moduledoc """
+  Ecto schema and changeset logic for sessions, including automatic slug generation.
+  """
   use Ecto.Schema
   import Ecto.Changeset
 
