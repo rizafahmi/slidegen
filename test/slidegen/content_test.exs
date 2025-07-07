@@ -8,7 +8,14 @@ defmodule Slidegen.ContentTest do
 
     import Slidegen.ContentFixtures
 
-    @invalid_attrs %{description: nil, title: nil, language: nil, topic: nil, taget_audience: nil, content: nil}
+    @invalid_attrs %{
+      description: nil,
+      title: nil,
+      language: nil,
+      topic: nil,
+      taget_audience: nil,
+      content: nil
+    }
 
     test "list_sessions/0 returns all sessions" do
       session = session_fixture()
@@ -21,7 +28,14 @@ defmodule Slidegen.ContentTest do
     end
 
     test "create_session/1 with valid data creates a session" do
-      valid_attrs = %{description: "some description", title: "some title", language: "some language", topic: "some topic", taget_audience: "some taget_audience", content: "some content"}
+      valid_attrs = %{
+        description: "some description",
+        title: "some title",
+        language: "some language",
+        topic: "some topic",
+        taget_audience: "some taget_audience",
+        content: "some content"
+      }
 
       assert {:ok, %Session{} = session} = Content.create_session(valid_attrs)
       assert session.description == "some description"
@@ -38,7 +52,15 @@ defmodule Slidegen.ContentTest do
 
     test "update_session/2 with valid data updates the session" do
       session = session_fixture()
-      update_attrs = %{description: "some updated description", title: "some updated title", language: "some updated language", topic: "some updated topic", taget_audience: "some updated taget_audience", content: "some updated content"}
+
+      update_attrs = %{
+        description: "some updated description",
+        title: "some updated title",
+        language: "some updated language",
+        topic: "some updated topic",
+        taget_audience: "some updated taget_audience",
+        content: "some updated content"
+      }
 
       assert {:ok, %Session{} = session} = Content.update_session(session, update_attrs)
       assert session.description == "some updated description"
