@@ -40,8 +40,8 @@ defmodule SlidegenWeb.SessionLive.Form do
   defp return_to("show"), do: "show"
   defp return_to(_), do: "index"
 
-  defp apply_action(socket, :edit, %{"id" => id}) do
-    session = Content.get_session!(id)
+  defp apply_action(socket, :edit, %{"slug" => slug}) do
+    session = Content.get_session_by_slug!(slug)
 
     socket
     |> assign(:page_title, "Edit Session")
@@ -95,5 +95,5 @@ defmodule SlidegenWeb.SessionLive.Form do
   end
 
   defp return_path("index", _session), do: ~p"/sessions"
-  defp return_path("show", session), do: ~p"/sessions/#{session}"
+  defp return_path("show", session), do: ~p"/sessions/#{session.slug}"
 end

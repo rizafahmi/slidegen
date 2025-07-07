@@ -56,7 +56,7 @@ defmodule SlidegenWeb.SessionLiveTest do
                index_live
                |> element("#sessions-#{session.id} a", "Edit")
                |> render_click()
-               |> follow_redirect(conn, ~p"/sessions/#{session}/edit")
+               |> follow_redirect(conn, ~p"/sessions/#{session.slug}/edit")
 
       assert render(form_live) =~ "Edit Session"
 
@@ -87,20 +87,20 @@ defmodule SlidegenWeb.SessionLiveTest do
     setup [:create_session]
 
     test "displays session", %{conn: conn, session: session} do
-      {:ok, _show_live, html} = live(conn, ~p"/sessions/#{session}")
+      {:ok, _show_live, html} = live(conn, ~p"/sessions/#{session.slug}")
 
       assert html =~ "Show Session"
       assert html =~ session.topic
     end
 
     test "updates session and returns to show", %{conn: conn, session: session} do
-      {:ok, show_live, _html} = live(conn, ~p"/sessions/#{session}")
+      {:ok, show_live, _html} = live(conn, ~p"/sessions/#{session.slug}")
 
       assert {:ok, form_live, _} =
                show_live
                |> element("a", "Edit")
                |> render_click()
-               |> follow_redirect(conn, ~p"/sessions/#{session}/edit?return_to=show")
+               |> follow_redirect(conn, ~p"/sessions/#{session.slug}/edit?return_to=show")
 
       assert render(form_live) =~ "Edit Session"
 
@@ -112,7 +112,7 @@ defmodule SlidegenWeb.SessionLiveTest do
                form_live
                |> form("#session-form", session: @update_attrs)
                |> render_submit()
-               |> follow_redirect(conn, ~p"/sessions/#{session}")
+               |> follow_redirect(conn, ~p"/sessions/#{session.slug}")
 
       html = render(show_live)
       assert html =~ "Session updated successfully"
