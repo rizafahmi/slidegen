@@ -20,8 +20,8 @@ defmodule SlidegenWeb.Router do
     get "/", PageController, :home
     live "/sessions", SessionLive.Index, :index
     live "/sessions/new", SessionLive.Form, :new
-    live "/sessions/:id", SessionLive.Show, :show
-    live "/sessions/:id/edit", SessionLive.Form, :edit
+    live "/sessions/:slug", SessionLive.Show, :show
+    live "/sessions/:slug/edit", SessionLive.Form, :edit
   end
 
   # Other scopes may use custom stacks.

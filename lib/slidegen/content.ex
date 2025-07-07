@@ -101,4 +101,6 @@ defmodule Slidegen.Content do
   def change_session(%Session{} = session, attrs \\ %{}) do
     Session.changeset(session, attrs)
   end
+
+  def get_session_by_slug!(slug), do: Repo.get_by!(Session, slug: slug)
 end

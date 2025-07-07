@@ -14,7 +14,7 @@ defmodule SlidegenWeb.SessionLive.Show do
           <.button navigate={~p"/sessions"}>
             <.icon name="hero-arrow-left" />
           </.button>
-          <.button variant="primary" navigate={~p"/sessions/#{@session}/edit?return_to=show"}>
+          <.button variant="primary" navigate={~p"/sessions/#{@session.slug}/edit?return_to=show"}>
             <.icon name="hero-pencil-square" /> Edit session
           </.button>
         </:actions>
@@ -23,6 +23,7 @@ defmodule SlidegenWeb.SessionLive.Show do
       <.list>
         <:item title="Topic">{@session.topic}</:item>
         <:item title="Title">{@session.title}</:item>
+        <:item title="Slug">{@session.slug}</:item>
         <:item title="Description">{@session.description}</:item>
         <:item title="Taget audience">{@session.taget_audience}</:item>
         <:item title="Language">{@session.language}</:item>
@@ -33,10 +34,10 @@ defmodule SlidegenWeb.SessionLive.Show do
   end
 
   @impl true
-  def mount(%{"id" => id}, _session, socket) do
+  def mount(%{"slug" => slug}, _session, socket) do
     {:ok,
      socket
      |> assign(:page_title, "Show Session")
-     |> assign(:session, Content.get_session!(id))}
+     |> assign(:session, Content.get_session_by_slug!(slug))}
   end
 end

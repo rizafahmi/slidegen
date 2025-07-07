@@ -19,19 +19,20 @@ defmodule SlidegenWeb.SessionLive.Index do
       <.table
         id="sessions"
         rows={@streams.sessions}
-        row_click={fn {_id, session} -> JS.navigate(~p"/sessions/#{session}") end}
+        row_click={fn {_id, session} -> JS.navigate(~p"/sessions/#{session.slug}") end}
       >
         <:col :let={{_id, session}} label="Topic">{session.topic}</:col>
         <:col :let={{_id, session}} label="Title">{session.title}</:col>
+        <:col :let={{_id, session}} label="Slug">{session.slug}</:col>
         <:col :let={{_id, session}} label="Description">{session.description}</:col>
         <:col :let={{_id, session}} label="Taget audience">{session.taget_audience}</:col>
         <:col :let={{_id, session}} label="Language">{session.language}</:col>
         <:col :let={{_id, session}} label="Content">{session.content}</:col>
         <:action :let={{_id, session}}>
           <div class="sr-only">
-            <.link navigate={~p"/sessions/#{session}"}>Show</.link>
+            <.link navigate={~p"/sessions/#{session.slug}"}>Show</.link>
           </div>
-          <.link navigate={~p"/sessions/#{session}/edit"}>Edit</.link>
+          <.link navigate={~p"/sessions/#{session.slug}/edit"}>Edit</.link>
         </:action>
         <:action :let={{id, session}}>
           <.link
