@@ -119,4 +119,20 @@ defmodule SlidegenWeb.SessionLiveTest do
       assert html =~ "some updated topic"
     end
   end
+
+  describe "Slug generation" do
+    test "slug is generated and is human-readable" do
+      session = session_fixture(%{title: "Elixir for Beginners"})
+      assert session.slug =~ "elixir-for-beginners"
+      assert String.length(session.slug) >= String.length("elixir-for-beginners")
+    end
+
+    test "slug is unique for sessions with same title" do
+      session1 = session_fixture(%{title: "Phoenix LiveView"})
+      session2 = session_fixture(%{title: "Phoenix LiveView"})
+      assert session1.slug != session2.slug
+      assert String.starts_with?(session1.slug, "phoenix-liveview")
+      assert String.starts_with?(session2.slug, "phoenix-liveview")
+    end
+  end
 end
